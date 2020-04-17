@@ -1,11 +1,11 @@
 FROM ubuntu:18.04
 
 # ARGUMENTS
-ARG SDK_MANAGER_VERSION=0.9.14-4964
+ARG SDK_MANAGER_VERSION=1.0.1-5538
 ARG SDK_MANAGER_DEB=sdkmanager_${SDK_MANAGER_VERSION}_amd64.deb
 
 # add new sudo user
-ENV USERNAME jetpack
+ENV USERNAME nvidia
 ENV HOME /home/$USERNAME
 RUN useradd -m $USERNAME && \
         echo "$USERNAME:$USERNAME" | chpasswd && \
@@ -53,6 +53,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gpg-agent \
         gpgconf \
         gpgv \
+        emacs \
         && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -66,7 +67,7 @@ ENV LC_ALL en_US.UTF-8
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
 # install SDK Manager
-USER jetpack
+USER nvidia
 COPY ${SDK_MANAGER_DEB} /home/${USERNAME}/
 WORKDIR /home/${USERNAME}
 RUN sudo apt-get install -f /home/${USERNAME}/${SDK_MANAGER_DEB}
