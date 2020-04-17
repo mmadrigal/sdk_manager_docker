@@ -35,6 +35,16 @@ Please launch NVIDIA SDK Manager by the following command.
 $ sdkmanager
 ```
 
+or use the cli interface as follows:
+
+```
+$ sdkmanager --cli install --responsefile my_response_file.ini
+```
+
+You can use the following response file as a template:
+
+<https://docs.nvidia.com/sdk-manager/sdkm-command-line-install/index.html#cli-example-response-file>
+
 You need type user password during setup of NVIDIA SDK Manager.  
-In [this Dockerfile](https://github.com/atinfinity/sdk_manager_docker/blob/master/Dockerfile#L75), user password is set to `jetpack`.  
-So, please type `jetpack` as user password.
+In [this Dockerfile](https://github.com/atinfinity/sdk_manager_docker/blob/master/Dockerfile#L75), user password is set to `nvidia`.  
+
